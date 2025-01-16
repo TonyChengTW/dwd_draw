@@ -19,6 +19,7 @@
    - [Build the Docker Image](#build-the-docker-image)
    - [Run the Docker Container](#run-the-docker-container)
    - [Access the Application](#access-the-application)
+3. [Notes](#notes)
 
 ---
 
@@ -69,8 +70,12 @@ docker build -t luckydraw:latest .
 After building the image, run the following command to start the service in Docker:
 
 ```bash
-docker run -p 8080:8080 luckydraw:latest
+docker stop luckydraw
+docker run -d -p 8080:8080 luckydraw:latest
 ```
 
 ## Access the Application
 The application will be available at [http://localhost:8080](http://localhost:8080) on your local machine.
+
+# Notes
+1. `docker rmi $(docker images -f "dangling=true" -q)`
