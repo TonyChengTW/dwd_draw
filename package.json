@@ -60,7 +60,6 @@
     "mini-css-extract-plugin": "^0.9.0",
     "moment": "^2.22.2",
     "ng2-charts": "^2.4.2",
-    "node-sass": "^4.10.0",
     "one-colorpicker": "^1.0.12",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "papaparse": "^5.3.2",
@@ -68,7 +67,7 @@
     "postcss-loader": "^3.0.0",
     "progressbar.js": "^1.1.0",
     "raw-loader": "^0.5.1",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7",
     "style-loader": "^0.23.1",
     "sweetalert2": "^11.0.7",
     "verte": "0.0.12",
@@ -97,6 +96,7 @@
   },
   "description": "",
   "devDependencies": {
-    "babel-core": "^6.26.3"
+    "babel-core": "^6.26.3",
+    "sass": "^1.83.4"
   }
 }
