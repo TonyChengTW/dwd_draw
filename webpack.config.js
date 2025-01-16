@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -50,7 +51,7 @@ const jsConfig = {
         rules: [{
             test: /\.(js|jsx)$/,
             include: APP_DIR,
-            exclude: /node_modules/,
+            exclude: [/node_modules/, /\.DS_Store$/],
             loader: 'babel-loader',
         },
         {
@@ -114,7 +115,7 @@ const jsConfig = {
 
 let cssConfig = {
     mode,
-    devtool: isDev ? 'cheap-eval-source-map' : '',
+    devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',
     entry: {
         ...file_entry.css,
     },
@@ -122,58 +123,42 @@ let cssConfig = {
         filename: './css_del/[name].bundle.css.js',
         path: BUILD_DIR,
     },
-    resolve: {
-        alias: {
-
-        },
-    },
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            url: false,
-                        },
-                    },
-                    'postcss-loader',
+                    'css-loader',
                 ],
             },
             {
                 test: /\.(sa|sc)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader, // Extract CSS to separate files
                     {
                         loader: 'css-loader',
                         options: {
                             url: false,
                         },
                     },
-                    'postcss-loader',
-                    'sass-loader',
+                    'postcss-loader', // Optional, for PostCSS processing
+                    'sass-loader', // Compile Sass to CSS
                 ],
             },
         ],
     },
     plugins: [
-        /*
-            https://github.com/webpack-contrib/mini-css-extract-plugin
-        */
         new MiniCssExtractPlugin({
-            filename: '../css/[name].css',
+            filename: '../css/[name].css', // Output file for extracted CSS
         }),
-        /*
-            https://github.com/nuxt/webpackbar
-         */
         new WebpackBar({
             name: ' ------ CSS Bundle ------ ',
             color: '#009fba',
         }),
     ],
 };
+
 
 if (mode === 'production') {
     cssConfig = {
