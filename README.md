@@ -4,35 +4,73 @@
 
 在未經同意時，請勿複製改寫用於公司商業用途。
 
-[Lucky Draw](https://apan1121.github.io/luckydraw/)
-
+[Lucky Draw](https://apan1121.github.io/luckydraw/)  
 [Demo Video](https://www.youtube.com/watch?v=Vp7fli021d8)
 
+---
 
+## Table of Contents
+1. [Running Locally](#running-locally)
+   - [Install Dependencies](#install-dependencies)
+   - [Install Required Packages](#install-required-packages)
+   - [Build the Project](#build-the-project)
+   - [Serve the Built Files](#serve-the-built-files)
+2. [Running with Docker](#running-with-docker)
+   - [Build the Docker Image](#build-the-docker-image)
+   - [Run the Docker Container](#run-the-docker-container)
+   - [Access the Application](#access-the-application)
 
+---
 
-# Additional notes
-yarn install
-yarn run build:prod
+# Running Locally
 
-serve . -l 8080
+## Install Dependencies
+Ensure you have Yarn installed. If not, you can install it via npm:
 
-some info
 ```bash
-sw_vers   
-ProductName:            macOS
-ProductVersion:         15.2
-BuildVersion:           24C101
-shu-jenghsieh@Shu-Jengs-MacBook-Pro luckydraw % python 
-shu-jenghsieh@Shu-Jengs-MacBook-Pro luckydraw % which python
-/opt/homebrew/Cellar/python@3.13/3.13.1/bin/python
-shu-jenghsieh@Shu-Jengs-MacBook-Pro luckydraw % node -v
-v18.18.2
+npm install -g yarn
 ```
 
+## Install Required Packages
+Navigate to your project directory and run:
 
-
-
+```bash
+yarn install
 ```
+
+## Build the Project
+Run the production build command:
+
+```bash
+yarn run build:prod
+```
+
+## Serve the Built Files
+Use the `serve` command to serve the built files:
+
+```bash
+serve . -l 8080
+```
+
+The application will be available at [http://localhost:8080](http://localhost:8080).
+
+---
+
+# Running with Docker
+
+## Build the Docker Image
+In your project directory, run the following command to build the Docker image:
+
+```bash
 docker build -t luckydraw:latest .
 ```
+
+## Run the Docker Container
+After building the image, run the following command to start the service in Docker:
+
+```bash
+docker run -p 8080:8080 luckydraw:latest
+```
+
+## Access the Application
+The application will be available at [http://localhost:8080](http://localhost:8080) on your local machine.

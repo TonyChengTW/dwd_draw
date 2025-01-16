@@ -1,23 +1,22 @@
-# Use a Node.js base image
 FROM node:18-alpine
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and yarn.lock first to leverage Docker caching
+# Copy package and lock files first
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
-# Copy the rest of the application code
+# Copy the rest of the files
 COPY . .
 
 # Build the project
 RUN yarn run build:prod
 
-# Expose the port your app will run on
-EXPOSE 8080
+# Use a minimal server like serve
+RUN yarn global add serve
 
-# Start the server using serve
-CMD ["npx", "serve", ".", "-l", "8080"]
+# Expose the port and set CMD
+EXPOSE 8080
+CMD ["serve", "-s", ".", "-l", "8080"]
