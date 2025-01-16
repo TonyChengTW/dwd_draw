@@ -179,20 +179,8 @@
                         <div class="form-group">
                             <label for="defaultRunTime">亂數跳動次數 [{{ input.defaultRunTime }} 次]</label>
                             <input v-model.number="input.defaultRunTime" type="range" class="form-control"
-                                min="10" max="100"
+                                min="2" max="100"
                             >
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h4>贊助一杯咖啡</h4>
-                            </div>
-                            <div class="col-12">
-                                <a href="https://www.buymeacoffee.com/apan1121" target="_blank" @click="donateAct">
-                                    <div class="donate-image">
-                                        <img width="100%" :src="'./dist/img/buymeacoffee.jpeg'">
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </form>
                 </div>
